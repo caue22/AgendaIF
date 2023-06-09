@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Cor primária da sua marca -->
+        <item name="colorPrimary">#FF99CC00</item>
+        <!-- Variação escura da cor primária para a status bar e contextual app bars -->
+        <item name="colorPrimaryDark">#FF99CC00</item>
+        <!-- Cor para de acentuação para as views (checkbox, textfield, etc) -->
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+    <!-- Tema que desliga a action bar padrão -->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Cor primária da sua marca -->
+        <item name="colorPrimary">#99CC00</item>
+        <!-- Variação escura da cor primária para a status bar -->
+        <item name="colorPrimaryDark">#FF99CC00</item>
+        <!-- Cor para de acentuação para as views (checkbox, textfield, etc) -->
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+    <color name="bottom_nav_item_color_selected">#FFFFFF</color> <!-- Cor dos itens selecionados -->
+    <color name="bottom_nav_item_color_unselected">#FFFFFF</color> <!-- Cor dos itens não selecionados -->
+
+
+
+</resources>

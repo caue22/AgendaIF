@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">AgendaIF</string>
+    <string-array name="spinner_locais">
+        <item>Local:</item>
+        <item>Auditorio </item>
+        <item>Quadra</item>
+        <item>Ginasio</item>
+        <item>Laboratorio</item>
+    </string-array>
+    <string-array name="spinner_horarios">
+        <item>-- : --</item>
+        <item>7:00</item>
+        <item>8:00</item>
+        <item>9:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+
+    </string-array>
+    <string name="activity_reservas_title">Reservas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
