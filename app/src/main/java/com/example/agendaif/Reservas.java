@@ -59,27 +59,31 @@ public class Reservas extends AppCompatActivity {
 
         // Lista de eventos e adaptador
         eventosList = new ArrayList<>();
+
+        // Obtendo referência do banco de dados
         databaseReference = ConfuguracaoFirebase.getFirebaseDatabase();
+
+        // Recuperando os eventos do banco de dados Firebase
         databaseReference.child("Calendar").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dn : snapshot.getChildren()) {
+                    // Convertendo o DataSnapshot para o objeto Evento
                     Evento e = dn.getValue(Evento.class);
                     eventosList.add(e);
                 }
+                // Criando e configurando o adaptador de eventos
                 eventosAdapter = new EventosAdapter(eventosList);
                 recyclerViewEventos.setAdapter(eventosAdapter);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Tratando erros de leitura do banco de dados Firebase
             }
         });
 
-
-
+        // Configurando o BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -89,14 +93,17 @@ public class Reservas extends AppCompatActivity {
         });
         bottomNavigationView.setSelectedItemId(R.id.action_reservas);
     }
+
     private boolean handleBottomNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_inicio:
+                // Abrir a atividade TelaOpcao
                 Intent intent4 = new Intent(Reservas.this, TelaOpcao.class);
                 startActivity(intent4);
                 return true;
 
             case R.id.action_agenda:
+                // Abrir a atividade Calendario
                 Intent intent2 = new Intent(Reservas.this, Calendario.class);
                 startActivity(intent2);
                 return true;
@@ -105,12 +112,14 @@ public class Reservas extends AppCompatActivity {
                 return true;
 
             case R.id.action_perfil:
+                // Alternar a visibilidade da CardView com base no fragmento selecionado
                 toggleCardVisibility(new fragmentoPerfil());
                 return true;
         }
 
         return false;
     }
+
     private void toggleCardVisibility(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -135,48 +144,4 @@ public class Reservas extends AppCompatActivity {
 
         fragmentTransaction.commit();
     }
-
 }
-
-
-//        eventosAdapter = new EventosAdapter(eventosList);
-//        recyclerViewEventos.setAdapter(eventosAdapter);
-//
-//        // Referência ao nó "Calendar" no banco de dados
-//        databaseReference = FirebaseDatabase.getInstance().getReference("Calendar");
-//
-//        // Listener para capturar os dados do banco de dados
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                eventosList.clear(); // Limpa a lista de eventos
-//
-//                // Percorre os snapshots dos dados recebidos
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-//                        // Verifica se o snapshot possui os campos necessários
-//                        if (eventSnapshot.hasChild("nome") && eventSnapshot.hasChild("data") && eventSnapshot.hasChild("horario")) {
-//                            // Obtém os valores dos campos
-//                            String nome = eventSnapshot.child("nomeEvento").getValue(String.class);
-//                            String data = eventSnapshot.child("dataEvento").getValue(String.class);
-//                            String horarioInicio = eventSnapshot.child("horarioInicio").getValue(String.class);
-//                            String horarioFim = eventSnapshot.child("horarioTermino").getValue(String.class);
-//                            String local = eventSnapshot.child("localEvento").getValue(String.class);
-//
-//                            // Cria o objeto Evento e adiciona à lista
-//                            Evento evento = new Evento(nome, data, horarioInicio, horarioFim, local);
-//                            eventosList.add(evento);
-//                        }
-//                    }
-//                }
-//
-//                eventosAdapter.notifyDataSetChanged(); // Notifica o adaptador que os dados foram alterados
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Tratar o erro, se necessário
-//            }
-//        });
-//    }
-//}

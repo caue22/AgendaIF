@@ -10,40 +10,39 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class EventosAdapter extends RecyclerView.Adapter {
+public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHolderClass> {
 
     List<Evento> eventosList;
 
     public EventosAdapter(List<Evento> eventosList) {
-
         this.eventosList = eventosList;
     }
 
-
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflar o layout do item_evento.xml para criar a visualização do item do evento
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_evento, parent, false);
-        ViewHolderClass vhClass = new ViewHolderClass(view);
-        return vhClass;
+        // Retornar uma instância de ViewHolderClass contendo a visualização do item do evento
+        return new ViewHolderClass(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolderClass vhClass = (ViewHolderClass) holder;
-
+    public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
+        // Obter o evento na posição específica da lista
         Evento evento = eventosList.get(position);
 
-
-        ((ViewHolderClass) holder).textNomeEvento.setText(evento.getNomeEvento());
-        ((ViewHolderClass) holder).textDataEvento.setText(evento.getDataEvento());
-        ((ViewHolderClass) holder).textHorarioInicio.setText(evento.getHorarioInicio());
-        ((ViewHolderClass) holder).textHorarioTermino.setText(evento.getHorarioTermino());
-        ((ViewHolderClass) holder).textLocalEvento.setText(evento.getLocalEvento());
+        // Definir os valores dos TextViews do item do evento com base nos dados do evento
+        holder.textNomeEvento.setText(evento.getNomeEvento());
+        holder.textDataEvento.setText(evento.getDataEvento());
+        holder.textHorarioInicio.setText(evento.getHorarioInicio());
+        holder.textHorarioTermino.setText(evento.getHorarioTermino());
+        holder.textLocalEvento.setText(evento.getLocalEvento());
     }
 
     @Override
     public int getItemCount() {
+        // Retornar o número total de eventos na lista
         return eventosList.size();
     }
 
@@ -56,13 +55,12 @@ public class EventosAdapter extends RecyclerView.Adapter {
 
         public ViewHolderClass(View itemView) {
             super(itemView);
+            // Obter as referências dos TextViews no layout do item_evento.xml
             textNomeEvento = itemView.findViewById(R.id.eventoNome);
             textDataEvento = itemView.findViewById(R.id.viewData);
             textHorarioInicio = itemView.findViewById(R.id.viewInicio);
             textHorarioTermino = itemView.findViewById(R.id.viewFinal);
             textLocalEvento = itemView.findViewById(R.id.viewLocal);
         }
-
-
     }
 }

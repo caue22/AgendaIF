@@ -46,7 +46,6 @@ public class Calendario extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,23 +59,23 @@ public class Calendario extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(myToolbar);
 
-
+        // Inicialização dos componentes de layout
         calendarView = findViewById(R.id.calendarView);
         editText = findViewById(R.id.editText);
         spinnerHorarioInicio = findViewById(R.id.spinnerHorarioInicio);
         spinnerHorarioTermino = findViewById(R.id.spinnerHorarioTermino);
         spinnerLocais = findViewById(R.id.spinner_locais);
 
+        // Configuração do adaptador para o spinner de horário de início
         ArrayAdapter<String> adapterHorarioInicio = new ArrayAdapter<String>(
                 this,
                 R.layout.spinner_item_layout, // ID do layout do item do spinner
                 getResources().getStringArray(R.array.spinner_horarios)
         );
-
         adapterHorarioInicio.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHorarioInicio.setAdapter(adapterHorarioInicio);
 
-
+        // Configuração do adaptador para o spinner de horário de término
         ArrayAdapter<String> adapterHorarioTermino = new ArrayAdapter<String>(
                 this,
                 R.layout.spinner_item_layout,
@@ -85,6 +84,7 @@ public class Calendario extends AppCompatActivity {
         adapterHorarioTermino.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHorarioTermino.setAdapter(adapterHorarioTermino);
 
+        // Configuração do adaptador para o spinner de locais
         ArrayAdapter<CharSequence> adapterLocais = new ArrayAdapter<CharSequence>(
                 this,
                 R.layout.spinner_item_layout, // Layout personalizado para os itens do spinner
@@ -93,19 +93,18 @@ public class Calendario extends AppCompatActivity {
         adapterLocais.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLocais.setAdapter(adapterLocais);
 
-
+        // Listener para capturar a data selecionada no calendário
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
-
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 stringDateSelected =  Integer.toString(dayOfMonth)+"_"+ Integer.toString(month + 1) +"_"+ Integer.toString(year);
-//                calendarClicked();
             }
         });
 
+        // Inicialização da referência ao nó "Calendar" no banco de dados Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Calendar");
 
+        // Configuração do BottomNavigationView para lidar com os itens de navegação inferior
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -115,11 +114,9 @@ public class Calendario extends AppCompatActivity {
         });
 
         bottomNavigationView.setSelectedItemId(R.id.action_agenda);
-
     }
 
-
-
+    // Método para tratar o clique do botão "Salvar Evento"
     public void buttonSaveEvent(View view) {
         String nomeEvento = editText.getText().toString();
         String dataEvento = stringDateSelected;
@@ -170,6 +167,7 @@ public class Calendario extends AppCompatActivity {
         });
     }
 
+    // Método para obter o ID do usuário atualmente logado
     private String getUserId() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -181,235 +179,14 @@ public class Calendario extends AppCompatActivity {
             Toast.makeText(Calendario.this, "Você não está logado. Por favor, faça login.", Toast.LENGTH_SHORT).show();
 
             // Redirecionar para a tela de login
-            Intent intent = new Intent(Calendario.this, MaCaue Garcia
-                    Caue Garcia#1155
-
-                    auroux — 07/12/2022 19:34
-            asdasd
-            Caue Garcia — 07/12/2022 19:34
-            https://www.youtube.com/watch?v=3g-1l5BjfyA&authuser=0
-            YouTube
-            Curso Online DlteC do Brasil
-            Como Ativar DHCP e DHCPv6 em VLANs (aula prática utilizando Cisco P...
-            Imagem
-            auroux — 02/03/2023 20:03
-            Imagem
-            Caue Garcia — 02/03/2023 20:12
-            voltei
-            auroux — 04/04/2023 16:12
-            https://www.onlinedoctranslator.com/pt/translationform
-            Online Doc Translator
-            Tradutor Online de Documentos Grátis – Preserve o layout de seus do...
-            Serviço grátis que traduz documentos office (Word, Excel, PowerPoint, PDF, OpenOffice, textos) em vários idiomas, mantendo o layout original. Arquivos suportados: Word: doc, docx; PDF: pdf; Excel: xls, xlsx; PowerPoint: ppt, pptx; Text xml, txt…
-            Imagem
-            Caue Garcia
-            iniciou uma chamada que durou 27 minutos.
- — 28/05/2023 16:02
-            auroux — 28/05/2023 16:14
-            getSupportActionBar().hide();
-            auroux — Hoje às 18:48
-            to aaqui ja
-            Caue Garcia — Hoje às 18:51
-            opaa
-            Caue Garcia
-            iniciou uma chamada que durou 29 minutos.
- — Hoje às 18:51
-            auroux — Hoje às 18:52
-            Tipo de arquivo em anexo: document
-            ProjetoFinal_PPDM_CAUE_FELIPE.docx
-            364.22 KB
-            Caue Garcia — Hoje às 19:08
-            Imagem
-                    Imagem
-            Imagem
-                    Imagem
-            Imagem
-            https://www.figma.com/proto/ogI0h9CH20N1buU06ceR63/Untitled?type=design&node-id=102-209&scaling=min-zoom&page-id=3%3A1559&starting-point-node-id=3%3A1560
-            Caue Garcia
-            iniciou uma chamada.
- — Hoje às 19:20
-            Caue Garcia — Hoje às 19:30
-            Telas do Aplicativo
-                    Imagem
-            Imagem
-            Caue Garcia — Hoje às 19:41
-            Imagem
-            auroux — Hoje às 19:42
-            Imagem
-            Caue Garcia — Hoje às 20:15
-            Imagem
-                    Imagem
-            Tipo de arquivo em anexo: archive
-            AgendaIF_versao_final.zip
-            164.11 KB
-            auroux — Hoje às 20:31
-package com.example.agendaif;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-            Expandir
-            message.txt
-            7 KB
-﻿
-package com.example.agendaif;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.example.agendaif.Modelos.usuarios;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.ktx.Firebase;
-
-            public class MainActivity extends AppCompatActivity {
-
-
-                private static final String TAG = "CustomAuthActivity";
-                private String mCustomToken;
-
-                // [START declare_auth]
-                private FirebaseAuth auth;
-                // [END declare_auth]
-                FirebaseDatabase database;
-
-                Button login;
-
-
-                private GoogleSignInClient client;
-
-
-                @Override
-                protected void onCreate(Bundle savedInstanceState) {
-                    super.onCreate(savedInstanceState);
-                    setContentView(R.layout.activity_main);
-                    getSupportActionBar().hide();
-
-                    Log.d(TAG, " -----------------------------------> onCreate: A atividade foi criada com sucesso.");
-
-                    auth = FirebaseAuth.getInstance();
-                    database = FirebaseDatabase.getInstance("https://agendamobile-9bfa7-default-rtdb.firebaseio.com/");
-//Teste novo de login
-
-                    login = findViewById(R.id.login);
-                    GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                            .requestIdToken(getString(R.string.default_web_client_id))
-                            .requestEmail()
-                            .build();
-                    client = GoogleSignIn.getClient(this, options);
-                    login.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent i = client.getSignInIntent();
-                            startActivityForResult(i, 123);
-                        }
-                    });
-
-
-                }
-
-                @Override
-                protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-                    super.onActivityResult(requestCode, resultCode, data);
-                    if (requestCode == 123){
-                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                        try {
-                            GoogleSignInAccount account = task.getResult(ApiException.class);
-                            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-                            auth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                @Override
-                                public void onSuccess(AuthResult authResult) {
-                                    if(task.isSuccessful()){
-                                        FirebaseUser user = auth.getCurrentUser();
-                                        usuarios usuario1= new usuarios();
-                                        assert  user != null;
-                                        usuario1.setUserId(user.getUid());
-                                        usuario1.setUserName(user.getDisplayName());
-                                        usuario1.setProfilePic(user.getPhotoUrl().toString());
-                                        database.getReference().child("usuarios").child(user.getUid()).setValue(usuario1);
-                                        Intent intent = new Intent (MainActivity.this, TelaOpcao.class);
-                                        startActivity(intent);
-                                    }
-                                    else{
-                                        Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
-
-                        } catch (ApiException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-    private void startSignIn() {
-
-        // [START sign_in_custom]
-        mAuth.signInWithCustomToken(mCustomToken)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCustomToken:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCustomToken:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-        // [END sign_in_custom]
-    }
-
-    private void updateUI(FirebaseUser user) {
-
-    }*/
-            }
-            message.txt
-            7 KBinActivity.class);
+            Intent intent = new Intent(Calendario.this, MainActivity.class);
             startActivity(intent);
             finish(); // Finalizar a atividade atual para que o usuário não possa voltar pressionando o botão "Voltar"
             return null; // Retornar null quando o usuário não está autenticado
         }
     }
+
+    // Método para obter o nome do usuário atualmente logado
     private String getUserName() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -428,6 +205,7 @@ import com.google.firebase.ktx.Firebase;
         }
     }
 
+    // Método para tratar a seleção de itens do BottomNavigationView
     private boolean handleBottomNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_inicio:
@@ -444,12 +222,14 @@ import com.google.firebase.ktx.Firebase;
                 return true;
 
             case R.id.action_perfil:
-            toggleCardVisibility(new fragmentoPerfil());
-            return true;
+                toggleCardVisibility(new fragmentoPerfil());
+                return true;
         }
 
         return false;
     }
+
+    // Método para alternar a visibilidade da CardView com um fragmento
     private void toggleCardVisibility(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -474,17 +254,4 @@ import com.google.firebase.ktx.Firebase;
 
         fragmentTransaction.commit();
     }
-
 }
-
-
-
-
-
-
-
-/*FirebaseAuth.getInstance().signOut();
-                Intent mainIntent = new Intent(Calendario.this, MainActivity.class);
-                startActivity(mainIntent);
-                return true; */
-
