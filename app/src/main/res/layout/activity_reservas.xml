@@ -48,7 +48,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <!-- Fragmento será adicionado aqui programaticamente -->
 
         </androidx.cardview.widget.CardView>
     </FrameLayout>

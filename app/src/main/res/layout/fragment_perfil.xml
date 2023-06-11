@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context=".fragmentoPerfil">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:id="@+id/nomeUsuario"
