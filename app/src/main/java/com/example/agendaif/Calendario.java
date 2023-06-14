@@ -118,40 +118,43 @@ public class Calendario extends AppCompatActivity {
 
     // Método para tratar o clique do botão "Salvar Evento"
     public void buttonSaveEvent(View view) {
+        // Obtém os valores dos campos de entrada do evento
         String nomeEvento = editText.getText().toString();
         String dataEvento = stringDateSelected;
         String horarioInicio = spinnerHorarioInicio.getSelectedItem().toString();
         String horarioTermino = spinnerHorarioTermino.getSelectedItem().toString();
         String localEvento = spinnerLocais.getSelectedItem().toString();
-
-        // Verificar se já existe um evento na mesma data e horário
-        String eventoKey = stringDateSelected + "_" + horarioInicio + "_" + horarioTermino + "_" + localEvento; // Chave única para o evento
-
-        // Verificar se o evento já existe com as mesmas informações (local, data e horário)
+        // Cria uma chave única para o evento usando a data, horário de início, horário de término e local do evento
+        String eventoKey = stringDateSelected + "_" + horarioInicio + "_" + horarioTermino + "_" + localEvento;
+        // Adiciona um ouvinte para verificar se o evento já existe no banco de dados
         databaseReference.child(eventoKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    // Evento já existe
+                    // Evento já existe, exibe uma mensagem de erro
                     Toast.makeText(Calendario.this, "Já existe um evento marcado para o mesmo local, data e horário", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Evento não existe, pode ser salvo
-                    String userId = getUserId(); // Obtenha o ID do usuário atualmente logado
-                    String userName = getUserName(); // Obtenha o nome do usuário atualmente logado
-
+                    // Obtém o ID do usuário atualmente logado
+                    String userId = getUserId();
+                    // Obtém o nome do usuário atualmente logado
+                    String userName = getUserName();
+                    // Cria um objeto Evento com os dados do evento
                     Evento evento = new Evento(nomeEvento, stringDateSelected, horarioInicio, horarioTermino, localEvento);
                     evento.setUserId(userId);
                     evento.setUserName(userName);
+                    // Salva o evento no banco de dados
                     databaseReference.child(eventoKey).setValue(evento)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
+                                    // Evento salvo com sucesso, exibe uma mensagem de sucesso
                                     Toast.makeText(Calendario.this, "Evento salvo com sucesso!", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+                                    // Erro ao salvar o evento, exibe uma mensagem de erro e registra o erro no log
                                     Toast.makeText(Calendario.this, "Erro ao salvar o evento", Toast.LENGTH_SHORT).show();
                                     Log.e("Calendario", "Erro ao salvar o evento", e);
                                 }
@@ -161,11 +164,13 @@ public class Calendario extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                // Erro ao verificar a existência de eventos, exibe uma mensagem de erro e registra o erro no log
                 Toast.makeText(Calendario.this, "Erro ao verificar a existência de eventos", Toast.LENGTH_SHORT).show();
                 Log.e("Calendario", "Erro ao verificar a existência de eventos", error.toException());
             }
         });
     }
+
 
     // Método para obter o ID do usuário atualmente logado
     private String getUserId() {
