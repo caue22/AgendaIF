@@ -124,6 +124,7 @@ public class Calendario extends AppCompatActivity {
         String horarioInicio = spinnerHorarioInicio.getSelectedItem().toString();
         String horarioTermino = spinnerHorarioTermino.getSelectedItem().toString();
         String localEvento = spinnerLocais.getSelectedItem().toString();
+
         // Cria uma chave única para o evento usando a data, horário de início, horário de término e local do evento
         String eventoKey = stringDateSelected + "_" + horarioInicio + "_" + horarioTermino + "_" + localEvento;
         // Adiciona um ouvinte para verificar se o evento já existe no banco de dados

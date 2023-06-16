@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHolderClass> {
+    //ViewHolder é responsável por manter as referências aos elementos do layout
 
+    // Fonte de dados para o adptador
     List<Evento> eventosList;
 
     public EventosAdapter(List<Evento> eventosList) {
         this.eventosList = eventosList;
     }
-
     @NonNull
     @Override
     public ViewHolderClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -26,7 +27,6 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
         // Retornar uma instância de ViewHolderClass contendo a visualização do item do evento
         return new ViewHolderClass(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
         // Obter o evento na posição específica da lista
@@ -39,7 +39,6 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
         holder.textHorarioTermino.setText(evento.getHorarioTermino());
         holder.textLocalEvento.setText(evento.getLocalEvento());
     }
-
     @Override
     public int getItemCount() {
         // Retornar o número total de eventos na lista

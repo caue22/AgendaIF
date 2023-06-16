@@ -55,6 +55,7 @@ public class Reservas extends AppCompatActivity {
 
         // Referência ao RecyclerView no layout
         recyclerViewEventos = findViewById(R.id.recyclerViewEventos);
+        //organiza os itens em uma lista vertical.
         recyclerViewEventos.setLayoutManager(new LinearLayoutManager(this));
 
         // Lista de eventos e adaptador
@@ -68,7 +69,7 @@ public class Reservas extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dn : snapshot.getChildren()) {
-                    // Convertendo o DataSnapshot para o objeto Evento
+                    //os dados do snapshot são percorridos usando um loop e convertidos em objetos Evento e adicionado ao eventosList
                     Evento e = dn.getValue(Evento.class);
                     eventosList.add(e);
                 }
